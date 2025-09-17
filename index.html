@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexa - Creative Digital Agency</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8A2BE2;
+            --primary-dark: #6A1CB8;
+            --secondary: #121212;
+            --accent: #FF00FF;
+            --light: #F8F8F8;
+            --white: #FFFFFF;
+            --gray: #333333;
+            --light-gray: #DDDDDD;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--secondary);
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: padding 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 15px 5%;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--secondary);
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 5% 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 50px;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: var(--secondary);
+        }
+
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 14px 30px;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
+        }
+
+        .hero-visual {
+            flex: 1;
+            position: relative;
+            height: 500px;
+            perspective: 1000px;
+        }
+
+        .floating-icon {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: var(--white);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            animation: float 6s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+
+        .icon-1 {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            top: 10%;
+            left: 30%;
+            animation-delay: 0s;
+        }
+
+        .icon-2 {
+            background: linear-gradient(45deg, #FF6B6B, #FF00FF);
+            top: 40%;
+            left: 60%;
+            animation-delay: 1s;
+            width: 100px;
+            height: 100px;
+            font-size: 40px;
+        }
+
+        .icon-3 {
+            background: linear-gradient(45deg, #4ECDC4, #00C9FF);
+            top: 70%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        .icon-4 {
+            background: linear-gradient(45deg, #FFD166, #FF6B6B);
+            top: 30%;
+            left: 10%;
+            animation-delay: 3s;
+            width: 90px;
+            height: 90px;
+            font-size: 35px;
+        }
+
+        .icon-5 {
+            background: linear-gradient(45deg, #118AB2, #06D6A0);
+            top: 60%;
+            left: 70%;
+            animation-delay: 4s;
+        }
+
+        .icon-6 {
+            background: linear-gradient(45deg, #9A77CF, #6A1CB8);
+            top: 20%;
+            left: 50%;
+            animation-delay: 5s;
+            width: 70px;
+            height: 70px;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 5%;
+            background-color: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .service-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(138, 43, 226, 0.1);
+        }
+
+        .service-icon {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: var(--white);
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        .service-content p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 5%;
+            position: relative;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .about-content p {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .zoom-section {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            background-attachment: fixed;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .zoom-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(18, 18, 18, 0.7);
+        }
+
+        .zoom-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .zoom-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .zoom-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 5%;
+            background-color: var(--light);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .testimonial-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(138, 43, 226, 0.1);
+        }
+
+        .testimonial-content {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .testimonial-content:before {
+            content: '"';
+            font-size: 60px;
+            color: var(--primary);
+            opacity: 0.2;
+            position: absolute;
+            top: -20px;
+            left: -10px;
+        }
+
+        .testimonial-content p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            margin-right: 15px;
+        }
+
+        .author-details h4 {
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .author-details p {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 100px 5%;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .pricing-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(138, 43, 226, 0.1);
+        }
+
+        .pricing-header {
+            padding: 30px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: var(--white);
+        }
+
+        .pricing-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .pricing-features {
+            padding: 30px;
+        }
+
+        .pricing-features ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            color: var(--gray);
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-card.popular {
+            transform: scale(1.05);
+        }
+
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 80px 5% 40px;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(138, 43, 226, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .contact-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(138, 43, 226, 0.3);
+            border-color: var(--primary);
+        }
+
+        .service-display {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: var(--white);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.3);
+            font-size: 1.1rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-column p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: var(--light-gray);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Floating Label Form Styles */
+        .form-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .floating-label .form-control {
+            width: 100%;
+            padding: 15px 15px 15px 0;
+            border: none;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            background: transparent;
+            color: var(--white);
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .floating-label .form-control::placeholder {
+            color: transparent;
+        }
+
+        .floating-label .form-control:focus {
+            outline: none;
+            border-bottom-color: var(--primary);
+            box-shadow: none;
+        }
+
+        .floating-label label {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+
+        .floating-label .form-control:focus + label,
+        .floating-label .form-control:not(:placeholder-shown) + label {
+            top: -10px;
+            left: 0;
+            font-size: 12px;
+            color: var(--primary);
+            transform: translateY(0);
+        }
+
+        .floating-label textarea.form-control {
+            padding: 15px 15px 45px 0;
+            min-height: 100px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: var(--white);
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(45deg, var(--primary-dark), var(--accent));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid var(--white);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .form-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+
+        .form-message.success {
+            background: rgba(0, 255, 0, 0.1);
+            color: #4CAF50;
+            border: 1px solid #4CAF50;
+        }
+
+        .form-message.error {
+            background: rgba(255, 0, 0, 0.1);
+            color: #f44336;
+            border: 1px solid #f44336;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-gray);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 968px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 150px;
+            }
+
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 50px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-visual {
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                right: 0;
+                top: 70px;
+                background-color: var(--white);
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: all 0.4s ease;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .zoom-content h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .floating-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+
+            .icon-2 {
+                width: 80px;
+                height: 80px;
+                font-size: 32px;
+            }
+
+            .icon-4 {
+                width: 70px;
+                height: 70px;
+                font-size: 28px;
+            }
+
+            .service-icon {
+                height: 150px;
+                font-size: 40px;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .close {
+            color: var(--gray);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+        }
+
+        .close:hover {
+            color: var(--primary);
+        }
+
+        .modal h2 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-content form {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal .form-group {
+            margin-bottom: 20px;
+        }
+
+        .modal .floating-label .form-control {
+            width: 100%;
+            padding: 15px 15px 15px 0;
+            border: none;
+            border-bottom: 2px solid var(--light-gray);
+            background: transparent;
+            color: var(--secondary);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .modal .floating-label label {
+            color: var(--gray);
+            top: 15px;
+        }
+
+        .modal .floating-label .form-control:focus + label,
+        .modal .floating-label .form-control:not(:placeholder-shown) + label {
+            color: var(--primary);
+            top: -10px;
+            font-size: 12px;
+        }
+
+        .modal .submit-btn {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: var(--white);
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+        }
+
+        .modal .service-display {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: var(--white);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.3);
+            font-size: 1.1rem;
+        }
+
+        .modal .form-control[readonly] {
+            background: rgba(138, 43, 226, 0.1);
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        @media screen and (max-width: 480px) {
+            .modal-content {
+                margin: 10% auto;
+                padding: 20px;
+                width: 95%;
+            }
+        }
+
+        /* Success Popup Styles */
+        .success-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .popup-content {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            animation: popupAppear 0.3s ease-out;
+        }
+
+        .popup-icon {
+            font-size: 4rem;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        .popup-content h3 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .popup-content p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--gray);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-close:hover {
+            color: var(--primary);
+        }
+
+        @keyframes popupAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .success-popup.show {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <a href="#" class="logo">Nexa<span>.</span></a>
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Elevate Your <span>Digital Presence</span> With Our Expert Solutions</h1>
+            <p>We are a full-service digital agency focused on helping brands grow through innovative design, development, and marketing strategies that deliver measurable results.</p>
+            <a href="#" class="cta-button" data-service="General Consultation">Get Started</a>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-icon icon-1">
+                <i class="fas fa-paint-brush"></i>
+            </div>
+            <div class="floating-icon icon-2">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="floating-icon icon-3">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="floating-icon icon-4">
+                <i class="fas fa-hashtag"></i>
+            </div>
+            <div class="floating-icon icon-5">
+                <i class="fas fa-code"></i>
+            </div>
+            <div class="floating-icon icon-6">
+                <i class="fas fa-laptop"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-title">
+            <h2>Our Services</h2>
+            <p>We offer a wide range of digital services to help your business grow</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Graphic Design</h3>
+                    <p>Stunning visual designs that communicate your brand's message and captivate your audience.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="service-content">
+                    <h3>SEO Optimization</h3>
+                    <p>Boost your search engine rankings and drive organic traffic to your website with our SEO strategies.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Digital Marketing</h3>
+                    <p>Comprehensive marketing strategies to increase your online visibility and generate leads.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-hashtag"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Social Media Management</h3>
+                    <p>Engage your audience and grow your social media presence with our expert management services.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Web Development</h3>
+                    <p>Custom websites and web applications built with the latest technologies for optimal performance.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="service-content">
+                    <h3>App Development</h3>
+                    <p>User-friendly mobile applications that provide seamless experiences across all devices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2>Why Choose Nexa?</h2>
+            <p>At Nexa, we combine creativity with strategy to deliver digital solutions that drive growth. Our team of experts is dedicated to understanding your unique business needs and creating tailored strategies that deliver measurable results.</p>
+            <p>With years of experience in the digital industry, we've helped countless businesses transform their online presence and achieve their goals. We stay ahead of industry trends to ensure your business remains competitive in the ever-evolving digital landscape.</p>
+        </div>
+    </section>
+
+    <!-- Zoom Section -->
+    <section class="zoom-section">
+        <div class="zoom-content">
+            <h2>Transforming Ideas Into Digital Experiences</h2>
+            <p>Let us help you create a powerful digital presence that captivates your audience and drives growth.</p>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-title">
+            <h2>Happy Clients</h2>
+            <p>What our clients say about our services</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>Nexa transformed our online presence completely. Their SEO strategies doubled our organic traffic in just 3 months!</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JD</div>
+                    <div class="author-details">
+                        <h4>John Doe</h4>
+                        <p>CEO, TechSolutions</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>The website Nexa created for us is not only stunning but also converts visitors into customers at an impressive rate.</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SA</div>
+                    <div class="author-details">
+                        <h4>Sarah Anderson</h4>
+                        <p>Marketing Director, InnovateCo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>Their social media management service has significantly increased our engagement and follower growth.</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MJ</div>
+                    <div class="author-details">
+                        <h4>Michael Johnson</h4>
+                        <p>Founder, StyleTrend</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-title">
+            <h2>Our Packages</h2>
+            <p>Affordable pricing for every business need</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Basic</h3>
+                    <p class="price">$299<span>/month</span></p>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>5 Graphic Designs</li>
+                        <li>SEO Audit Report</li>
+                        <li>Social Media Management (3 platforms)</li>
+                        <li>Basic Website Maintenance</li>
+                        <li>Monthly Performance Report</li>
+                    </ul>
+                    <a href="#" class="cta-button" data-service="Basic Package - $299/month">Get Started</a>
+                </div>
+            </div>
+            <div class="pricing-card popular">
+                <div class="pricing-header">
+                    <h3>Growth</h3>
+                    <p class="price">$599<span>/month</span></p>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>10 Graphic Designs</li>
+                        <li>Full SEO Optimization</li>
+                        <li>Social Media Management (5 platforms)</li>
+                        <li>Website Development</li>
+                        <li>Weekly Performance Report</li>
+                        <li>Email Marketing Campaign</li>
+                    </ul>
+                    <a href="#" class="cta-button" data-service="Growth Package - $599/month">Get Started</a>
+                </div>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Premium</h3>
+                    <p class="price">$999<span>/month</span></p>
+                </div>
+                <div class="pricing-features">
+                    <ul>
+                        <li>Unlimited Designs</li>
+                        <li>Comprehensive SEO Strategy</li>
+                        <li>Full Social Media Management</li>
+                        <li>Custom Web Application</li>
+                        <li>Daily Performance Monitoring</li>
+                        <li>Dedicated Account Manager</li>
+                        <li>24/7 Support</li>
+                    </ul>
+                    <a href="#" class="cta-button" data-service="Premium Package - $999/month">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>Nexa</h3>
+                <p>Transforming businesses through innovative digital solutions that drive growth and deliver measurable results.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Graphic Design</a></li>
+                    <li><a href="#">SEO Optimization</a></li>
+                    <li><a href="#">Digital Marketing</a></li>
+                    <li><a href="#">Social Media Management</a></li>
+                    <li><a href="#">Web Development</a></li>
+                    <li><a href="#">App Development</a></li>
+                    <li><a href="#">Ad Campaigns</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p>Email: nexaagency702@gmail.com</p>
+                <p>Phone: +92 330 4343812</p>
+                <p>Address: Wah Cantt, Punjab, Pakistan</p>
+                <div class="contact-box">
+                    <form id="footerContactForm" action="https://formsubmit.co/nexaagency702@gmail.com" method="POST">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_subject" value="New Contact Form Submission">
+                        <input type="hidden" name="_next" value="https://nexaagency702@gmail.com">
+                        
+                        <div class="form-group floating-label">
+                            <input class="form-control" type="text" id="footerName" name="name" placeholder=" " required>
+                            <label for="footerName">Your Name</label>
+                        </div>
+                        <div class="form-group floating-label">
+                            <input class="form-control" type="email" id="footerEmail" name="email" placeholder=" " required>
+                            <label for="footerEmail">Your Email</label>
+                        </div>
+                        <div class="form-group floating-label">
+                            <input class="form-control" type="tel" id="footerPhone" name="phone" placeholder=" " required>
+                            <label for="footerPhone">Your Phone Number</label>
+                        </div>
+                        <div class="form-group floating-label">
+                            <textarea class="form-control" id="footerMessage" name="message" placeholder=" " rows="4" required></textarea>
+                            <label for="footerMessage">Your Message</label>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text">Send Message</span>
+                            <div class="spinner" style="display: none;"></div>
+                        </button>
+                        <div class="form-message"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Nexa. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Book Your Service</h2>
+            <div id="selectedServiceDisplay" class="service-display"></div>
+            <form id="bookingForm" action="https://formsubmit.co/nexaagency702@gmail.com" method="POST">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_subject" value="New Booking Request - {{service}}">
+                <input type="hidden" name="_next" value="https://nexaagency702@gmail.com">
+                
+                <div class="form-group floating-label">
+                    <input class="form-control" type="text" id="bookingName" name="name" placeholder=" " required>
+                    <label for="bookingName">Your Name</label>
+                </div>
+                <div class="form-group floating-label">
+                    <input class="form-control" type="email" id="bookingEmail" name="email" placeholder=" " required>
+                    <label for="bookingEmail">Your Email</label>
+                </div>
+                <div class="form-group floating-label">
+                    <input class="form-control" type="tel" id="bookingPhone" name="phone" placeholder=" " required>
+                    <label for="bookingPhone">Your Phone Number</label>
+                </div>
+                <div class="form-group floating-label">
+                    <input class="form-control" type="text" id="bookingService" name="service" placeholder=" " readonly>
+                    <label for="bookingService">Selected Service/Package</label>
+                </div>
+                <div class="form-group floating-label">
+                    <textarea class="form-control" id="bookingMessage" name="message" placeholder=" " rows="5" required></textarea>
+                    <label for="bookingMessage">Order Details</label>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">Submit Booking</span>
+                    <div class="spinner" style="display: none;"></div>
+                </button>
+                <div class="form-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div id="successPopup" class="success-popup">
+        <div class="popup-content">
+            <div class="popup-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Thank You!</h3>
+            <p>Our Team will reach you shortly</p>
+            <button class="popup-close" id="popupClose">&times;</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        // Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const header = document.querySelector('header');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .testimonial-card, .pricing-card').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // EmailJS Configuration - Replace placeholders with your actual values
+        // 1. Sign up at https://www.emailjs.com/
+        // 2. Connect your Gmail account (nexaagency702@gmail.com)
+        // 3. Create a service (e.g., 'gmail_service')
+        // 4. Create an email template with variables: {{name}}, {{email}}, {{phone}}, {{service}}, {{orderDetails}}
+        // 5. Replace below:
+        const SERVICE_ID = 'your_service_id';  // e.g., 'service_abc123'
+        const TEMPLATE_ID = 'your_template_id';  // e.g., 'template_def456'
+        const PUBLIC_KEY = 'your_public_key';  // From EmailJS dashboard
+
+        emailjs.init(PUBLIC_KEY);
+
+        // Booking Modal
+        const modal = document.getElementById('bookingModal');
+        const getStartedBtns = document.querySelectorAll('.cta-button[data-service]');
+        const closeBtn = document.querySelector('.close');
+        const bookingForm = document.getElementById('bookingForm');
+        const serviceDisplay = document.getElementById('selectedServiceDisplay');
+        const bookingServiceInput = document.getElementById('bookingService');
+        let selectedService = 'General Consultation';  // Default
+
+        getStartedBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                selectedService = btn.getAttribute('data-service') || 'General Consultation';
+                serviceDisplay.textContent = `Selected Service: ${selectedService}`;
+                bookingServiceInput.value = selectedService;
+                modal.style.display = 'block';
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = {
+                name: contactForm.querySelector('input[name="name"]').value,
+                email: contactForm.querySelector('input[name="email"]').value,
+                phone: contactForm.querySelector('input[name="phone"]').value,
+                message: contactForm.querySelector('textarea[name="message"]').value
+            };
+
+            // Send email via EmailJS to nexaagency702@gmail.com (use same service/template or create new)
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+                ...formData,
+                subject: 'New Contact Form Submission',
+                service: 'Contact Inquiry'
+            })
+                .then((response) => {
+                    console.log('Contact email sent successfully!', response.status, response.text);
+                    showSuccessPopup();
+                    contactForm.reset();
+                }, (error) => {
+                    console.error('Failed to send contact email:', error);
+                    alert('Message submitted, but email failed to send. Please try again or contact us directly.');
+                });
+        });
+
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                service: selectedService,
+                orderDetails: document.getElementById('orderDetails').value
+            };
+
+            // Send email via EmailJS to nexaagency702@gmail.com
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, formData)
+                .then((response) => {
+                    console.log('Email sent successfully!', response.status, response.text);
+                    console.log('Booking submitted:', formData);
+                    showSuccessPopup();
+                }, (error) => {
+                    console.error('Failed to send email:', error);
+                    console.log('Booking submitted:', formData);
+                    alert('Booking request submitted, but email failed to send. Please contact us directly at nexaagency702@gmail.com.');
+                });
+
+            modal.style.display = 'none';
+            document.getElementById('selectedServiceDisplay').textContent = '';
+            bookingForm.reset();
+        });
+
+        // Success Popup Function
+        function showSuccessPopup() {
+            const popup = document.getElementById('successPopup');
+            popup.classList.add('show');
+            
+            // Auto close after 4 seconds
+            setTimeout(() => {
+                popup.classList.remove('show');
+            }, 4000);
+        }
+
+        // Close popup on button click
+        document.getElementById('popupClose').addEventListener('click', () => {
+            document.getElementById('successPopup').classList.remove('show');
+        });
+
+        // Close popup on overlay click
+        document.getElementById('successPopup').addEventListener('click', (e) => {
+            if (e.target.id === 'successPopup') {
+                e.target.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

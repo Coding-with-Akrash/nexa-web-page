@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexa - Creative Digital Agency</title>
+    <title>NEXA SOFT SOLUTIONS - Professional Software Development & AI Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -270,7 +270,8 @@
             gap: 30px;
         }
 
-        .service-card {
+.service-card {
+            flex: 0 0 300px;
             background: var(--white);
             border-radius: 15px;
             overflow: hidden;
@@ -279,12 +280,12 @@
             opacity: 0;
             transform: translateY(50px);
         }
-
+        
         .service-card.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
+        
         .service-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(138, 43, 226, 0.1);
@@ -379,36 +380,82 @@
             margin: 0 auto;
         }
 
-        /* Testimonials */
+        /* Testimonials - Horizontal Rolling Marquee */
         .testimonials {
-            padding: 100px 5%;
+            padding: 80px 5%;
             background-color: var(--light);
+            overflow: hidden;
         }
 
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        .testimonials-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .testimonials-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .testimonials-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .testimonials-marquee {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonials-marquee::before,
+        .testimonials-marquee::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 150px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .testimonials-marquee::before {
+            left: 0;
+            background: linear-gradient(to right, var(--light), transparent);
+        }
+
+        .testimonials-marquee::after {
+            right: 0;
+            background: linear-gradient(to left, var(--light), transparent);
+        }
+
+        .testimonials-track {
+            display: flex;
             gap: 30px;
+            width: max-content;
+            animation: scroll-testimonials 40s linear infinite;
+        }
+
+        .testimonials-track:hover {
+            animation-play-state: paused;
         }
 
         .testimonial-card {
+            flex: 0 0 350px;
             background: var(--white);
             border-radius: 15px;
             padding: 30px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        .testimonial-card.visible {
-            opacity: 1;
-            transform: translateY(0);
+            border: 1px solid rgba(138, 43, 226, 0.1);
         }
 
         .testimonial-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(138, 43, 226, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(138, 43, 226, 0.15);
+            border-color: var(--primary);
         }
 
         .testimonial-content {
@@ -416,130 +463,159 @@
             position: relative;
         }
 
-        .testimonial-content:before {
+        .testimonial-content::before {
             content: '"';
             font-size: 60px;
             color: var(--primary);
-            opacity: 0.2;
+            opacity: 0.15;
             position: absolute;
-            top: -20px;
-            left: -10px;
+            top: -15px;
+            left: -5px;
+            font-family: Georgia, serif;
         }
 
         .testimonial-content p {
             color: var(--gray);
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 0.95rem;
         }
 
         .testimonial-author {
             display: flex;
             align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid var(--light-gray);
         }
 
         .author-avatar {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--white);
-            font-weight: 600;
-            margin-right: 15px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-right: 12px;
+            flex-shrink: 0;
         }
 
         .author-details h4 {
             color: var(--secondary);
-            margin-bottom: 5px;
+            margin-bottom: 3px;
+            font-size: 1rem;
+            font-weight: 600;
         }
 
         .author-details p {
             color: var(--primary);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            font-weight: 500;
         }
 
-        /* Pricing */
-        .pricing {
-            padding: 100px 5%;
+        @keyframes scroll-testimonials {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        @media screen and (max-width: 768px) {
+            .testimonials {
+                padding: 60px 5%;
+            }
+            .testimonials-title h2 {
+                font-size: 2rem;
+            }
+            .testimonial-card {
+                flex: 0 0 300px;
+            }
+            @keyframes scroll-testimonials {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .testimonial-card {
+                flex: 0 0 280px;
+                padding: 25px 20px;
+            }
+        }
+
+        
+
+        /* Services - Horizontal Rolling Marquee */
+        .services-marquee {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .services-marquee::before,
+        .services-marquee::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 150px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .services-marquee::before {
+            left: 0;
+            background: linear-gradient(to right, var(--light), transparent);
+        }
+        .services-marquee::after {
+            right: 0;
+            background: linear-gradient(to left, var(--light), transparent);
+        }
+        .services-track {
+            display: flex;
             gap: 30px;
+            width: max-content;
+            animation: scroll-services 60s linear infinite;
         }
-
-        .pricing-card {
+        .services-track:hover {
+            animation-play-state: paused;
+        }
+        .service-card {
+            flex: 0 0 300px;
             background: var(--white);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
             transition: all 0.4s ease;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
         }
-
-        .pricing-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .pricing-card:hover {
+        .service-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(138, 43, 226, 0.1);
         }
-
-        .pricing-header {
-            padding: 30px;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            color: var(--white);
+        @keyframes scroll-services {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
-
-        .pricing-header h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
+        @media screen and (max-width: 768px) {
+            .service-card {
+                flex: 0 0 280px;
+            }
         }
-
-        .price {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0;
+        @media screen and (max-width: 480px) {
+            .service-card {
+                flex: 0 0 260px;
+                padding: 20px;
+            }
+            .service-icon {
+                height: 150px;
+                font-size: 40px;
+            }
+            .service-content h3 {
+                font-size: 1.25rem;
+            }
         }
-
-        .price span {
-            font-size: 1rem;
-            font-weight: 400;
-        }
-
-        .pricing-features {
-            padding: 30px;
-        }
-
-        .pricing-features ul {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-
-        .pricing-features li {
-            padding: 10px 0;
-            color: var(--gray);
-            border-bottom: 1px solid var(--light-gray);
-        }
-
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-
-        .pricing-card.popular {
-            transform: scale(1.05);
-        }
-
-        .pricing-card.popular:hover {
-            transform: scale(1.05) translateY(-10px);
-        }
-
         /* Footer */
         footer {
             background-color: var(--secondary);
@@ -553,27 +629,15 @@
             border-radius: 20px;
             padding: 30px;
             margin-top: 25px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(15px);
-            transition: all 0.4s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .contact-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-        }
-
         .contact-box:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(138, 43, 226, 0.3);
-            border-color: var(--primary);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
         .service-display {
@@ -647,7 +711,7 @@
             transform: translateY(-3px);
         }
 
-        /* Floating Label Form Styles */
+        /* Contact Form Inputs */
         .form-group {
             position: relative;
             margin-bottom: 25px;
@@ -657,9 +721,9 @@
             width: 100%;
             padding: 15px 15px 15px 0;
             border: none;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            border-bottom: 2px solid var(--light-gray);
             background: transparent;
-            color: var(--white);
+            color: var(--secondary);
             font-size: 16px;
             transition: all 0.3s ease;
             box-sizing: border-box;
@@ -679,7 +743,7 @@
             position: absolute;
             top: 15px;
             left: 0;
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--gray);
             font-size: 16px;
             pointer-events: none;
             transition: all 0.3s ease;
@@ -912,24 +976,25 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
         }
 
         .modal-content {
-            background-color: var(--white);
+            background: var(--white);
             margin: 5% auto;
             padding: 30px;
-            border-radius: 15px;
+            border-radius: 20px;
             width: 90%;
-            max-width: 500px;
+            max-width: 550px;
             position: relative;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
             animation: fadeIn 0.3s ease;
+            border: 1px solid rgba(138, 43, 226, 0.1);
         }
 
         .close {
-            color: var(--gray);
+            color: var(--primary);
             float: right;
             font-size: 28px;
             font-weight: bold;
@@ -940,20 +1005,22 @@
         }
 
         .close:hover {
-            color: var(--primary);
+            color: var(--secondary);
         }
 
         .modal h2 {
             color: var(--secondary);
             margin-bottom: 20px;
             text-align: center;
+            font-size: 1.8rem;
+            font-weight: 600;
         }
 
         .modal-content form {
             background: var(--white);
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
         }
 
         .modal .form-group {
@@ -963,12 +1030,19 @@
         .modal .floating-label .form-control {
             width: 100%;
             padding: 15px 15px 15px 0;
-            border: none;
-            border-bottom: 2px solid var(--light-gray);
+            border: 2px solid rgba(138, 43, 226, 0.2);
+            border-radius: 10px;
             background: transparent;
             color: var(--secondary);
             font-size: 16px;
             transition: all 0.3s ease;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .modal .floating-label .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
         }
 
         .modal .floating-label label {
@@ -1105,27 +1179,27 @@
 <body>
     <!-- Header & Navigation -->
     <header id="header">
-        <a href="#" class="logo">Nexa<span>.</span></a>
+        <a href="#" class="logo">NE<span>X</span>A</a>
         <div class="hamburger">
             <div class="line1"></div>
             <div class="line2"></div>
             <div class="line3"></div>
         </div>
         <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#pricing">Pricing</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="hero">
         <div class="hero-content">
-            <h1>Elevate Your <span>Digital Presence</span> With Our Expert Solutions</h1>
-            <p>We are a full-service digital agency focused on helping brands grow through innovative design, development, and marketing strategies that deliver measurable results.</p>
-            <a href="#" class="cta-button" data-service="General Consultation">Get Started</a>
+<h1>Professional <span>Software Development</span>, AI & Digital Transformation Services</h1>
+<p>NEXA SOFT SOLUTIONS is a premier software development company specializing in custom software development, AI solutions, web & mobile applications, cloud solutions, and digital transformation services for businesses worldwide.</p>
+            <a href="#" class="cta-button" data-service="Software Development Consultation">Get Started Today</a>
         </div>
         <div class="hero-visual">
             <div class="floating-icon icon-1">
@@ -1149,66 +1223,376 @@
         </div>
     </section>
 
-    <!-- Services Section -->
+<!-- Services Section -->
     <section class="services" id="services">
         <div class="section-title">
-            <h2>Our Services</h2>
-            <p>We offer a wide range of digital services to help your business grow</p>
+            <h2>Our Technology Solutions</h2>
+            <p>Comprehensive software development, AI, and digital transformation services</p>
         </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-paint-brush"></i>
-                </div>
-                <div class="service-content">
-                    <h3>Graphic Design</h3>
-                    <p>Stunning visual designs that communicate your brand's message and captivate your audience.</p>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-search"></i>
-                </div>
-                <div class="service-content">
-                    <h3>SEO Optimization</h3>
-                    <p>Boost your search engine rankings and drive organic traffic to your website with our SEO strategies.</p>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-bullhorn"></i>
-                </div>
-                <div class="service-content">
-                    <h3>Digital Marketing</h3>
-                    <p>Comprehensive marketing strategies to increase your online visibility and generate leads.</p>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-hashtag"></i>
-                </div>
-                <div class="service-content">
-                    <h3>Social Media Management</h3>
-                    <p>Engage your audience and grow your social media presence with our expert management services.</p>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="service-content">
-                    <h3>Web Development</h3>
-                    <p>Custom websites and web applications built with the latest technologies for optimal performance.</p>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <div class="service-content">
-                    <h3>App Development</h3>
-                    <p>User-friendly mobile applications that provide seamless experiences across all devices.</p>
-                </div>
+<div class="services-marquee">
+            <div class="services-track">
+                <!-- Original set -->
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-code"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Custom Software Development</h3>
+                     <p>Tailored software solutions designed to meet your specific business needs and drive digital transformation.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-laptop-code"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Web Application Development</h3>
+                     <p>Modern, responsive web applications built with latest technologies for optimal performance and user experience.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-mobile-alt"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Mobile Application Development</h3>
+                     <p>Native and cross-platform mobile applications for iOS and Android devices with seamless user experiences.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-robot"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Artificial Intelligence & Machine Learning</h3>
+                     <p>AI and ML solutions that enhance business operations, automate processes, and enable intelligent decision-making.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-chart-line"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Data Science & Big Data Analytics</h3>
+                     <p>Advanced analytics and data science services to extract insights from complex datasets and drive data-driven decisions.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-cloud"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Cloud Computing & DevOps</h3>
+                     <p>Scalable cloud infrastructure and DevOps services including migration, deployment, and management on AWS, Azure, and Google Cloud.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-desktop"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Desktop Application Development</h3>
+                     <p>Robust desktop applications for Windows, macOS, and Linux platforms with rich user interfaces and performance.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-building"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>ERP, CRM & Enterprise Software</h3>
+                     <p>Enterprise resource planning, customer relationship management, and custom enterprise software solutions.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-shopping-cart"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>E-Commerce Platforms</h3>
+                     <p>Secure, scalable e-commerce solutions with payment integration, inventory management, and customer experience optimization.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-cogs"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Automation & IoT Solutions</h3>
+                     <p>Business process automation and Internet of Things solutions for connected devices and smart systems.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-eye"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Computer Vision & Natural Language Processing</h3>
+                     <p>Advanced computer vision and NLP technologies for image recognition, language understanding, and intelligent interfaces.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-database"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Database Design & Optimization</h3>
+                     <p>Expert database design, optimization, and management for SQL and NoSQL databases ensuring performance and scalability.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-headset"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>IT Consultancy & Digital Transformation</h3>
+                     <p>Strategic IT consulting and digital transformation services to modernize your technology infrastructure and business processes.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-flask"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Research & Development (R&D)</h3>
+                     <p>Innovative research and development services for cutting-edge technologies and proof-of-concept projects.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-graduation-cap"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>University Semester Projects</h3>
+                     <p>Specialized support for university semester projects across various technical domains and academic requirements.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-graduation-cap"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Final Year Projects (FYPs)</h3>
+                     <p>Comprehensive guidance and development support for final year projects ensuring academic excellence and technical innovation.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-industry"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Industrial & Commercial Software Projects</h3>
+                     <p>Specialized software solutions for industrial automation, manufacturing, and commercial business applications.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-briefcase"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Corporate, Government & Private Sector IT Contracts</h3>
+                     <p>Enterprise-level IT contracts and solutions for corporate enterprises, government agencies, and private sector organizations.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-rocket"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Startup MVP Development</h3>
+                     <p>Minimum Viable Product development for startups to quickly validate ideas and enter the market with competitive solutions.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-tools"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Software Maintenance, Technical Support & System Upgrades</h3>
+                     <p>Ongoing maintenance, technical support, and system upgrade services to ensure long-term software reliability and performance.</p>
+                 </div>
+             </div>
+                <!-- Duplicated set for seamless looping -->
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-code"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Custom Software Development</h3>
+                     <p>Tailored software solutions designed to meet your specific business needs and drive digital transformation.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-laptop-code"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Web Application Development</h3>
+                     <p>Modern, responsive web applications built with latest technologies for optimal performance and user experience.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-mobile-alt"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Mobile Application Development</h3>
+                     <p>Native and cross-platform mobile applications for iOS and Android devices with seamless user experiences.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-robot"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Artificial Intelligence & Machine Learning</h3>
+                     <p>AI and ML solutions that enhance business operations, automate processes, and enable intelligent decision-making.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-chart-line"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Data Science & Big Data Analytics</h3>
+                     <p>Advanced analytics and data science services to extract insights from complex datasets and drive data-driven decisions.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-cloud"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Cloud Computing & DevOps</h3>
+                     <p>Scalable cloud infrastructure and DevOps services including migration, deployment, and management on AWS, Azure, and Google Cloud.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-desktop"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Desktop Application Development</h3>
+                     <p>Robust desktop applications for Windows, macOS, and Linux platforms with rich user interfaces and performance.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-building"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>ERP, CRM & Enterprise Software</h3>
+                     <p>Enterprise resource planning, customer relationship management, and custom enterprise software solutions.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-shopping-cart"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>E-Commerce Platforms</h3>
+                     <p>Secure, scalable e-commerce solutions with payment integration, inventory management, and customer experience optimization.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-cogs"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Automation & IoT Solutions</h3>
+                     <p>Business process automation and Internet of Things solutions for connected devices and smart systems.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-eye"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Computer Vision & Natural Language Processing</h3>
+                     <p>Advanced computer vision and NLP technologies for image recognition, language understanding, and intelligent interfaces.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-database"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Database Design & Optimization</h3>
+                     <p>Expert database design, optimization, and management for SQL and NoSQL databases ensuring performance and scalability.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-headset"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>IT Consultancy & Digital Transformation</h3>
+                     <p>Strategic IT consulting and digital transformation services to modernize your technology infrastructure and business processes.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-flask"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Research & Development (R&D)</h3>
+                     <p>Innovative research and development services for cutting-edge technologies and proof-of-concept projects.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-graduation-cap"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>University Semester Projects</h3>
+                     <p>Specialized support for university semester projects across various technical domains and academic requirements.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-graduation-cap"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Final Year Projects (FYPs)</h3>
+                     <p>Comprehensive guidance and development support for final year projects ensuring academic excellence and technical innovation.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-industry"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Industrial & Commercial Software Projects</h3>
+                     <p>Specialized software solutions for industrial automation, manufacturing, and commercial business applications.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-briefcase"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Corporate, Government & Private Sector IT Contracts</h3>
+                     <p>Enterprise-level IT contracts and solutions for corporate enterprises, government agencies, and private sector organizations.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-rocket"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Startup MVP Development</h3>
+                     <p>Minimum Viable Product development for startups to quickly validate ideas and enter the market with competitive solutions.</p>
+                 </div>
+             </div>
+             <div class="service-card">
+                 <div class="service-icon">
+                     <i class="fas fa-tools"></i>
+                 </div>
+                 <div class="service-content">
+                     <h3>Software Maintenance, Technical Support & System Upgrades</h3>
+                     <p>Ongoing maintenance, technical support, and system upgrade services to ensure long-term software reliability and performance.</p>
+                 </div>
+             </div>
             </div>
         </div>
     </section>
@@ -1216,172 +1600,285 @@
     <!-- About Section -->
     <section class="about" id="about">
         <div class="about-content">
-            <h2>Why Choose Nexa?</h2>
-            <p>At Nexa, we combine creativity with strategy to deliver digital solutions that drive growth. Our team of experts is dedicated to understanding your unique business needs and creating tailored strategies that deliver measurable results.</p>
-            <p>With years of experience in the digital industry, we've helped countless businesses transform their online presence and achieve their goals. We stay ahead of industry trends to ensure your business remains competitive in the ever-evolving digital landscape.</p>
+            <h2>About NEXA SOFT SOLUTIONS</h2>
+            <p>We are NEXA SOFT SOLUTIONS, a professional Software Development and IT Solutions Agency dedicated to delivering innovative, scalable, and high-quality technology solutions for individuals, startups, businesses, educational institutions, industries, and government organizations.</p>
         </div>
     </section>
 
     <!-- Zoom Section -->
     <section class="zoom-section">
         <div class="zoom-content">
-            <h2>Transforming Ideas Into Digital Experiences</h2>
-            <p>Let us help you create a powerful digital presence that captivates your audience and drives growth.</p>
+            <h2>Transforming Ideas Into Powerful Software Solutions</h2>
+            <p>Let us help you build scalable, secure, and innovative software applications that drive your business forward.</p>
         </div>
     </section>
 
     <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
-        <div class="section-title">
-            <h2>Happy Clients</h2>
-            <p>What our clients say about our services</p>
+        <div class="testimonials-title">
+            <h2>Client Success Stories</h2>
+            <p>What our clients say about our software development and IT services</p>
         </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="testimonial-content">
-                    <p>The video ad Nexa created for us is not only stunning but also converts viewers into customers at an impressive rate. Nexa transformed our online presence completely. Their SEO strategies doubled our organic traffic in just 3 months!</p>
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">AS</div>
-                    <div class="author-details">
-                        <h4>Ahmad Sheraz</h4>
-                        <p>CEO, Abwa Dreams International</p>
+        <div class="testimonials-marquee">
+            <div class="testimonials-track">
+                <!-- Original set -->
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Working with NEXA SOFT SOLUTIONS on my BS final year project was a great experience. They provided expert guidance throughout the development process, ensuring I met all academic requirements and delivered a high-quality solution.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">R</div>
+                        <div class="author-details">
+                            <h4>Raees Ahmad</h4>
+                            <p>FYP (BS Level)</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-content">
-                    <p>The video ad Nexa created for us is not only stunning but also converts viewers into customers at an impressive rate.</p>
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">RS</div>
-                    <div class="author-details">
-                        <h4>Raja Shahid</h4>
-                        <p>Manager, FoodBite</p>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>NEXA SOFT SOLUTIONS helped me transform my FYP idea into a functional application. Their technical expertise and timely support were instrumental in my project's success.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div class="author-details">
+                            <h4>Aneeza Fatima</h4>
+                            <p>FYP (BS Level)</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-           <!-- <div class="testimonial-card">
-                <div class="testimonial-content">
-                    <p>Their social media management service has significantly increased our engagement and follower growth.</p>
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">MJ</div>
-                    <div class="author-details">
-                        <h4>Michael Johnson</h4>
-                        <p>Founder, StyleTrend</p>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>I consulted NEXA SOFT SOLUTIONS for my FYP consultation, and they provided valuable insights on architecture and technologies that greatly improved my project's design.</p>
                     </div>
-                </div>  -->
-            </div>
-        </div>
-    </section>  
-
-    <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
-        <div class="section-title">
-            <h2>Our Packages</h2>
-            <p>Affordable pricing for every business need</p>
-        </div>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <div class="pricing-header">
-                    <h3>Basic</h3>
-                    <p class="price">$299<span>/month</span></p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">Z</div>
+                        <div class="author-details">
+                            <h4>Zunera Khan</h4>
+                            <p>FYP Consultation (BS Level)</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="pricing-features">
-                    <ul>
-                        <li>5 Graphic Designs</li>
-                        <li>SEO Audit Report</li>
-                        <li>Social Media Management (3 platforms)</li>
-                        <li>Basic Website Maintenance</li>
-                        <li>Monthly Performance Report</li>
-                    </ul>
-                    <a href="#" class="cta-button" data-service="Basic Package - $299/month">Get Started</a>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Thanks to NEXA SOFT SOLUTIONS, I was able to complete my BS final year project on schedule with a robust and well-documented system. Their support was exceptional.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">Am</div>
+                        <div class="author-details">
+                            <h4>Amna Malik</h4>
+                            <p>FYP (BS Level)</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="pricing-card popular">
-                <div class="pricing-header">
-                    <h3>Growth</h3>
-                    <p class="price">$599<span>/month</span></p>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>NEXA SOFT SOLUTIONS assisted me with my FYP development, offering practical solutions and debugging help that made a significant difference in the quality of my work.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">Ab</div>
+                        <div class="author-details">
+                            <h4>Abdullah Khan</h4>
+                            <p>FYP (BS Level)</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="pricing-features">
-                    <ul>
-                        <li>10 Graphic Designs</li>
-                        <li>Full SEO Optimization</li>
-                        <li>Social Media Management (5 platforms)</li>
-                        <li>Website Development</li>
-                        <li>Weekly Performance Report</li>
-                        <li>Email Marketing Campaign</li>
-                    </ul>
-                    <a href="#" class="cta-button" data-service="Growth Package - $599/month">Get Started</a>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>For my MS research project, NEXA SOFT SOLUTIONS provided critical assistance in implementing complex algorithms and data analysis, which enhanced the depth and rigor of my research.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-details">
+                            <h4>Saba Latif</h4>
+                            <p>Research & Development (MS Level)</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="pricing-card">
-                <div class="pricing-header">
-                    <h3>Premium</h3>
-                    <p class="price">$999<span>/month</span></p>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>The R&D support from NEXA SOFT SOLUTIONS was invaluable for my MS thesis. They helped me explore innovative approaches and achieve my research objectives efficiently.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">H</div>
+                        <div class="author-details">
+                            <h4>Haider</h4>
+                            <p>Research & Development (MS Level)</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="pricing-features">
-                    <ul>
-                        <li>Unlimited Designs</li>
-                        <li>Comprehensive SEO Strategy</li>
-                        <li>Full Social Media Management</li>
-                        <li>Custom Web Application</li>
-                        <li>Daily Performance Monitoring</li>
-                        <li>Dedicated Account Manager</li>
-                        <li>24/7 Support</li>
-                    </ul>
-                    <a href="#" class="cta-button" data-service="Premium Package - $999/month">Get Started</a>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Collaborating with NEXA SOFT SOLUTIONS on my MS research work allowed me to leverage cutting-edge technologies and methodologies, resulting in a strong research contribution.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">Re</div>
+                        <div class="author-details">
+                            <h4>Rehana</h4>
+                            <p>Research & Development (MS Level)</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Duplicated set for seamless looping -->
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Working with NEXA SOFT SOLUTIONS on my BS final year project was a great experience. They provided expert guidance throughout the development process, ensuring I met all academic requirements and delivered a high-quality solution.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">R</div>
+                        <div class="author-details">
+                            <h4>Raees Ahmad</h4>
+                            <p>FYP (BS Level)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>NEXA SOFT SOLUTIONS helped me transform my FYP idea into a functional application. Their technical expertise and timely support were instrumental in my project's success.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div class="author-details">
+                            <h4>Aneeza Fatima</h4>
+                            <p>FYP (BS Level)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>I consulted NEXA SOFT SOLUTIONS for my FYP consultation, and they provided valuable insights on architecture and technologies that greatly improved my project's design.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">Z</div>
+                        <div class="author-details">
+                            <h4>Zunera Khan</h4>
+                            <p>FYP Consultation (BS Level)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Thanks to NEXA SOFT SOLUTIONS, I was able to complete my BS final year project on schedule with a robust and well-documented system. Their support was exceptional.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">Am</div>
+                        <div class="author-details">
+                            <h4>Amna Malik</h4>
+                            <p>FYP (BS Level)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>NEXA SOFT SOLUTIONS assisted me with my FYP development, offering practical solutions and debugging help that made a significant difference in the quality of my work.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">Ab</div>
+                        <div class="author-details">
+                            <h4>Abdullah Khan</h4>
+                            <p>FYP (BS Level)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>For my MS research project, NEXA SOFT SOLUTIONS provided critical assistance in implementing complex algorithms and data analysis, which enhanced the depth and rigor of my research.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-details">
+                            <h4>Saba Latif</h4>
+                            <p>Research & Development (MS Level)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>The R&D support from NEXA SOFT SOLUTIONS was invaluable for my MS thesis. They helped me explore innovative approaches and achieve my research objectives efficiently.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">H</div>
+                        <div class="author-details">
+                            <h4>Haider</h4>
+                            <p>Research & Development (MS Level)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Collaborating with NEXA SOFT SOLUTIONS on my MS research work allowed me to leverage cutting-edge technologies and methodologies, resulting in a strong research contribution.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">Re</div>
+                        <div class="author-details">
+                            <h4>Rehana</h4>
+                            <p>Research & Development (MS Level)</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    
+
+<!-- Footer -->
     <footer id="contact">
         <div class="footer-grid">
             <div class="footer-column">
-                <h3>Nexa</h3>
-                <p>Transforming businesses through innovative digital solutions that drive growth and deliver measurable results.</p>
+                <h3>NEXA SOFT SOLUTIONS</h3>
+                <p>Professional Software Development, AI & Digital Transformation Services</p>
                 <div class="social-links">
-                    <a href="https://https://www.facebook.com/profile.php?id=61580403502187" target="_blank" class="social-link"><i class="fab fa-facebook"></i></a>
-                    <a href="https://wa.me/+923303438120" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://https://www.instagram.com/nexa.edges" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
             <div class="footer-column">
                 <h3>Quick Links</h3>
                 <ul class="footer-links">
                     <li><a href="#services">Services</a></li>
-                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#about">About</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Services</h3>
+                <h3>Our Services</h3>
                 <ul class="footer-links">
-                    <li><a href="#">Graphic Design</a></li>
-                    <li><a href="#">SEO Optimization</a></li>
-                    <li><a href="#">Digital Marketing</a></li>
-                    <li><a href="#">Social Media Management</a></li>
-                    <li><a href="#">Web Development</a></li>
-                    <li><a href="#">App Development</a></li>
-                    <li><a href="#">Ad Campaigns</a></li>
+                    <li><a href="#">Custom Software Development</a></li>
+                    <li><a href="#">Web Application Development</a></li>
+                    <li><a href="#">Mobile Application Development</a></li>
+                    <li><a href="#">Artificial Intelligence & Machine Learning</a></li>
+                    <li><a href="#">Data Science & Big Data Analytics</a></li>
+                    <li><a href="#">Cloud Computing & DevOps</a></li>
+                    <li><a href="#">Desktop Application Development</a></li>
+                    <li><a href="#">ERP, CRM & Enterprise Software</a></li>
+                    <li><a href="#">E-Commerce Platforms</a></li>
+                    <li><a href="#">Automation & IoT Solutions</a></li>
+                    <li><a href="#">Computer Vision & Natural Language Processing</a></li>
+                    <li><a href="#">Database Design & Optimization</a></li>
+                    <li><a href="#">IT Consultancy & Digital Transformation</a></li>
+                    <li><a href="#">Research & Development (R&D)</a></li>
+                    <li><a href="#">University Semester Projects</a></li>
+                    <li><a href="#">Final Year Projects (FYPs)</a></li>
+                    <li><a href="#">Industrial & Commercial Software Projects</a></li>
+                    <li><a href="#">Corporate, Government & Private Sector IT Contracts</a></li>
+                    <li><a href="#">Startup MVP Development</a></li>
+                    <li><a href="#">Software Maintenance, Technical Support & System Upgrades</a></li>
                 </ul>
             </div>
             <div class="footer-column">
                 <h3>Contact Us</h3>
                 <p>Email: nexaagency702@gmail.com</p>
-                <p>Phone: +92 330 4343812</p>
+                <p>Phone: +92 349 8545451 (Automated)</p>
+                <p>Phone: +92 311 5459380 (Consultation)</p>
                 <p>Address: Wah Cantt, Punjab, Pakistan</p>
                 <div class="contact-box">
-                    <form id="footerContactForm" action="https://formsubmit.co/nexaagency702@gmail.com" method="POST">
+                    <form id="footerContactForm" action="https://formsubmit.co/akrashnoor2580@gmail.com" method="POST">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_subject" value="New Contact Form Submission">
-                        <input type="hidden" name="_next" value="https://nexaagency702@gmail.com">
+                        <input type="hidden" name="_next" value="https://akrashnoor2580@gmail.com">
                         
                         <div class="form-group floating-label">
                             <input class="form-control" type="text" id="footerName" name="name" placeholder=" " required>
@@ -1409,7 +1906,7 @@
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2025 Nexa. All rights reserved.</p>
+            <p>&copy; 2025 NEXA SOFT SOLUTIONS. All rights reserved.</p>
         </div>
     </footer>
 
@@ -1419,11 +1916,11 @@
             <span class="close">&times;</span>
             <h2>Book Your Service</h2>
             <div id="selectedServiceDisplay" class="service-display"></div>
-            <form id="bookingForm" action="https://formsubmit.co/nexaagency702@gmail.com" method="POST">
+            <form id="bookingForm" action="https://formsubmit.co/akrashnoor2580@gmail.com" method="POST">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_subject" value="New Booking Request - {{service}}">
-                <input type="hidden" name="_next" value="https://nexaagency702@gmail.com">
-                
+                <input type="hidden" name="_next" value="https://akrashnoor2580@gmail.com">
+
                 <div class="form-group floating-label">
                     <input class="form-control" type="text" id="bookingName" name="name" placeholder=" " required>
                     <label for="bookingName">Your Name</label>
@@ -1508,7 +2005,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.service-card, .testimonial-card, .pricing-card').forEach(item => {
+        document.querySelectorAll('.service-card').forEach(item => {
             observer.observe(item);
         });
 
@@ -1532,7 +2029,7 @@
 
         // EmailJS Configuration - Replace placeholders with your actual values
         // 1. Sign up at https://www.emailjs.com/
-        // 2. Connect your Gmail account (nexaagency702@gmail.com)
+        // 2. Connect your Gmail account (akrashnoor2580@gmail.com)
         // 3. Create a service (e.g., 'gmail_service')
         // 4. Create an email template with variables: {{name}}, {{email}}, {{phone}}, {{service}}, {{orderDetails}}
         // 5. Replace below:
@@ -1549,7 +2046,7 @@
         const bookingForm = document.getElementById('bookingForm');
         const serviceDisplay = document.getElementById('selectedServiceDisplay');
         const bookingServiceInput = document.getElementById('bookingService');
-        let selectedService = 'General Consultation';  // Default
+        let selectedService = 'Software Development Consultation';  // Default
 
         getStartedBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
@@ -1649,10 +2146,4 @@
         });
     </script>
 </body>
-
 </html>
-
-
-
-
-
